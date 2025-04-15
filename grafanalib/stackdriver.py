@@ -47,8 +47,8 @@ class TimeSeriesList(object):
                                                                        CSR_REDUCE_MIN,
                                                                        CSR_REDUCE_SUM,
                                                                        CSR_REDUCE_STDDEV]))
-    filters = attr.ib(default=[], validator=instance_of(list))
-    groupBys = attr.ib(default=[], validator=instance_of(list))
+    filters = attr.ib(default=attr.Factory(lambda: []), validator=instance_of(list))
+    groupBys = attr.ib(default=attr.Factory(lambda: []), validator=instance_of(list))
     perSeriesAligner = attr.ib(default=PSA_ALIGN_MEAN, validator=in_([PSA_ALIGN_NONE,
                                                                       PSA_ALIGN_INTERPOLATE,
                                                                       PSA_ALIGN_NEXT_OLDER,
@@ -83,7 +83,7 @@ class StackdriverTarget(object):
     datasource = attr.ib(default='', validator=instance_of(str))
     refId = attr.ib(default='', validator=instance_of(str))
     aliasBy = attr.ib(default=None, validator=instance_of(Optional[str]))
-    timeSeriesList = attr.ib(default=TimeSeriesList(), validator=instance_of(TimeSeriesList))
+    timeSeriesList = attr.ib(default=attr.Factory(TimeSeriesList), validator=instance_of(TimeSeriesList))
     metricType = attr.ib(default=None, validator=instance_of(Optional[str]))
 
     def to_json_data(self):
