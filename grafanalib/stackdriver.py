@@ -35,11 +35,28 @@ class TimeSeriesList(object):
     TimeSeriesList for Stackdriver.
     """
 
-    alignmentPeriod = attr.ib(default=AP_CLOUD_MONITORING_AUTO, validator=in_([AP_CLOUD_MONITORING_AUTO, AP_GRAFANA_AUTO, AP_1M, AP_2M, AP_5M, AP_10M]))
-    crossSeriesReducer = attr.ib(default='REDUCE_NONE', validator=in_([CSR_REDUCE_NONE, CSR_REDUCE_MEAN, CSR_REDUCE_MAX, CSR_REDUCE_MIN, CSR_REDUCE_SUM, CSR_REDUCE_STDDEV]))
+    alignmentPeriod = attr.ib(default=AP_CLOUD_MONITORING_AUTO, validator=in_([AP_CLOUD_MONITORING_AUTO,
+                                                                               AP_GRAFANA_AUTO,
+                                                                               AP_1M,
+                                                                               AP_2M,
+                                                                               AP_5M,
+                                                                               AP_10M]))
+    crossSeriesReducer = attr.ib(default='REDUCE_NONE', validator=in_([CSR_REDUCE_NONE,
+                                                                       CSR_REDUCE_MEAN,
+                                                                       CSR_REDUCE_MAX,
+                                                                       CSR_REDUCE_MIN,
+                                                                       CSR_REDUCE_SUM,
+                                                                       CSR_REDUCE_STDDEV]))
     filters = attr.ib(default=[], validator=instance_of(list))
     groupBys = attr.ib(default=[], validator=instance_of(list))
-    perSeriesAligner = attr.ib(default=PSA_ALIGN_MEAN, validator=in_([PSA_ALIGN_NONE, PSA_ALIGN_INTERPOLATE, PSA_ALIGN_NEXT_OLDER, PSA_ALIGN_MIN, PSA_ALIGN_MAX, PSA_ALIGN_MEAN, PSA_ALIGN_STDDEV, PSA_ALIGN_PERCENTAGE]))
+    perSeriesAligner = attr.ib(default=PSA_ALIGN_MEAN, validator=in_([PSA_ALIGN_NONE,
+                                                                      PSA_ALIGN_INTERPOLATE,
+                                                                      PSA_ALIGN_NEXT_OLDER,
+                                                                      PSA_ALIGN_MIN,
+                                                                      PSA_ALIGN_MAX,
+                                                                      PSA_ALIGN_MEAN,
+                                                                      PSA_ALIGN_STDDEV,
+                                                                      PSA_ALIGN_PERCENTAGE]))
     preprocessor = attr.ib(default='none', validator=in_(['none']))
     projectName = attr.ib(default='', validator=instance_of(str))
     view = attr.ib(default='FULL', validator=in_(['FULL']))
